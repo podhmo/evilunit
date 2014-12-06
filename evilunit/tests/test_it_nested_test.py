@@ -111,4 +111,3 @@ class ToplevelTest(NestedTest):
             assert isinstance(self, unittest.TestCase)
             global L
             L = []
-
