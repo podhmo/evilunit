@@ -152,10 +152,10 @@ def collect_compiled_testcase(cls):
         for c in compiler.children:
             for gc in walk(c):
                 yield gc
-    r = []
+
     for c in walk(compiler):
         if any(k.startswith("test_") for k in c.compiled.__dict__.keys()):
-            r.append(c.compiled)
+            yield c.compiled
 
 
 def nested_test_compile(cls):
