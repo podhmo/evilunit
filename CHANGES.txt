@@ -1,1 +1,2 @@
-
+0.1.1:
+- fix if fixture is undefined in child class parent class's method is not called.
