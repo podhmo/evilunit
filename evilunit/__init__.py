@@ -81,6 +81,7 @@ class NestedTestCompiler(object):
         self.parent = parent
         self.children = []
         self.compiled = None
+        self.used_fixture = {name: False for name in ["setUp", "setUpClass", "tearDown", "tearDownClass"]}
 
     def compile(self):
         if self.compiled is not None:
@@ -105,10 +106,17 @@ class NestedTestCompiler(object):
             for name in new_attr_names:
                 self.attrs[name] = self.dispatch(name, getattr(cls, name))
 
+        if self.parent:
+            for method_name, is_used in self.used_fixture.items():
+                if is_used is False and self.parent.used_fixture.get(method_name, False):
+                    self.used_fixture[method_name] = True
+                    self.attrs[method_name] = self.parent.attrs[method_name]
+
     def dispatch(self, name, attr):
         if isinstance(attr, type) and issubclass(attr, NestedTest):
             return self.build_child_compiler(name, attr)
         elif name in ["setUp", "setUpClass", "tearDown", "tearDownClass"]:
+            self.used_fixture[name] = True
             return self.build_wrapped_method(name, attr)
         else:
             return attr

@@ -128,11 +128,6 @@ nested
                 L.append("m3")
                 self.assertEqual(L, ["t1", "m1", "t2", "m2", "m3"])
 
-            def tearDown(self):
-                assert isinstance(self, unittest.TestCase)
-                global L
-                L = []
-
             class GrandChild(NestedTest):
                 @classmethod
                 def setUpClass(cls):
@@ -148,11 +143,6 @@ nested
                     L.append("n3")
                     self.assertEqual(L, ["t1", "m1", "n1", "t2", "m2", "n2", "n3"])
 
-                def tearDown(self):
-                    assert isinstance(self, unittest.TestCase)
-                    global L
-                    L = []
-
         class Child2(NestedTest):
             @classmethod
             def setUpClass(cls):
@@ -167,9 +157,3 @@ nested
                 assert isinstance(self, unittest.TestCase)
                 L.append("o3")
                 self.assertEqual(L, ["t1", "o1", "t2", "o2", "o3"])
-
-            def tearDown(self):
-                assert isinstance(self, unittest.TestCase)
-                global L
-                L = []
-
