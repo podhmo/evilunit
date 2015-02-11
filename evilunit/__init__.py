@@ -42,7 +42,7 @@ def gensym():
     return "G{}".format(i)
 
 
-def paramaterized(candidates):
+def parameterized(candidates):
     # candidates = [(args, ..., expected)]
 
     def _parameterize(method):
@@ -61,6 +61,9 @@ def paramaterized(candidates):
             env[test.__name__] = test
         return method
     return _parameterize
+
+# typo. TODO:remove near feature.
+paramaterized = parameterized
 
 
 # nested test
