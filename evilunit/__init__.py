@@ -7,7 +7,7 @@ import sys
 # short cut functions
 
 def import_symbol(symbol):
-    return pkg_resources.EntryPoint.parse("x=%s" % symbol).load(False)
+    return pkg_resources.EntryPoint.parse("x=%s" % symbol).resolve()
 
 
 class TestShortcutMaker(object):

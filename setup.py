@@ -30,7 +30,7 @@ testing_extras = tests_require + [
 ]
 
 setup(name='evilunit',
-      version='0.1.2',
+      version='0.1.3',
       description='evil parts of unittest(python3 only)',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
