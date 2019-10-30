@@ -21,7 +21,7 @@ testing_extras = tests_require + ["flake8", "black"]
 
 setup(
     name="evilunit",
-    version="0.1.4",
+    version=open(os.path.join(here, "VERSION")).read().strip(),
     description="evil parts of unittest",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
