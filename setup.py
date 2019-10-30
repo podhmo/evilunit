@@ -14,23 +14,26 @@ except IOError:
     README = CHANGES = ""
 
 
-install_requires = ["setuptools"]
-
-
+install_requires = []
 docs_extras = []
-
-tests_require = []
-
-testing_extras = tests_require + []
+tests_require = ["pytest"]
+testing_extras = tests_require + ["flake8", "black"]
 
 setup(
     name="evilunit",
     version="0.1.4",
-    description="evil parts of unittest(python3 only)",
+    description="evil parts of unittest",
     long_description=README + "\n\n" + CHANGES,
     classifiers=[
         "Programming Language :: Python",
-        "Programming Language :: Python :: Implementation :: CPython",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
     keywords="unittest, test",
     author="podhmo",

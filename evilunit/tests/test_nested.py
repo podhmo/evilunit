@@ -5,6 +5,7 @@ import unittest
 class NestedSelfTests(unittest.TestCase):
     def _getTarget(self):
         from evilunit import NestedTestCompiler
+
         return NestedTestCompiler
 
     def _makeOne(self, L):
@@ -32,6 +33,7 @@ class NestedSelfTests(unittest.TestCase):
             def tearDownClass(self):
                 assert issubclass(self, unittest.TestCase)
                 L.append("t5")
+
         return self._getTarget()(Toplevel)
 
     def test_setUpClass(self):
@@ -73,6 +75,7 @@ class NestedSelfTests(unittest.TestCase):
 class NestedDoesNotInterfereEachSibbilngTests(unittest.TestCase):
     def _getTarget(self):
         from evilunit import NestedTestCompiler
+
         return NestedTestCompiler
 
     def _makeOne(self, L):
@@ -130,6 +133,7 @@ class NestedDoesNotInterfereEachSibbilngTests(unittest.TestCase):
 class NestedParentsOrderTests(unittest.TestCase):
     def _getTarget(self):
         from evilunit import NestedTestCompiler
+
         return NestedTestCompiler
 
     def _makeOne(self, L):

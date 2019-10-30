@@ -16,6 +16,7 @@ class Seq(object):
 
 def apply_test_function(*args, **kwargs):
     from evilunit import test_function
+
     return test_function(*args, **kwargs)
 
 
@@ -38,6 +39,7 @@ class TestCallFUTIsDefinedByHand(unittest.TestCase):
 
 def apply_test_instance(*args, **kwargs):
     from evilunit import test_target
+
     return test_target(*args, **kwargs)
 
 

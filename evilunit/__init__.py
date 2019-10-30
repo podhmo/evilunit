@@ -1,10 +1,10 @@
-# -*- coding:utf-8 -*-
 import pkg_resources
 import unittest
 import sys
 
 
 # short cut functions
+
 
 def import_symbol(symbol):
     return pkg_resources.EntryPoint.parse("x=%s" % symbol).resolve()
@@ -19,6 +19,7 @@ class TestShortcutMaker(object):
         def wrapper(cls):
             def _getTarget(self):
                 return import_symbol(symbol)
+
             setattr(cls, self.get_target, _getTarget)
 
             def _makeOne(self, *args, **kwargs):
@@ -27,7 +28,9 @@ class TestShortcutMaker(object):
             if not hasattr(cls, self.make_one):
                 setattr(cls, self.make_one, _makeOne)
             return cls
+
         return wrapper
+
 
 test_target = TestShortcutMaker(get_target="_getTarget", make_one="_makeOne")
 test_function = TestShortcutMaker(get_target="_getTarget", make_one="_callFUT")
@@ -60,7 +63,9 @@ def parameterized(candidates):
             test.__doc__ = "{}: args={}, expected={}".format(doc, paramaters, expected)
             env[test.__name__] = test
         return method
+
     return _parameterize
+
 
 # typo. TODO:remove near feature.
 paramaterized = parameterized
@@ -79,12 +84,14 @@ class NestedTestCompiler(object):
 
         self.test_cls = test_cls
         self.name = name or "Nested_{}".format(test_cls.__name__)
-        self.bases = bases or (unittest.TestCase, )
+        self.bases = bases or (unittest.TestCase,)
         self.attrs = {}
         self.parent = parent
         self.children = []
         self.compiled = None
-        self.used_fixture = {name: False for name in ["setUp", "setUpClass", "tearDown", "tearDownClass"]}
+        self.used_fixture = {
+            name: False for name in ["setUp", "setUpClass", "tearDown", "tearDownClass"]
+        }
 
     def compile(self):
         if self.compiled is not None:
@@ -111,7 +118,9 @@ class NestedTestCompiler(object):
 
         if self.parent:
             for method_name, is_used in self.used_fixture.items():
-                if is_used is False and self.parent.used_fixture.get(method_name, False):
+                if is_used is False and self.parent.used_fixture.get(
+                    method_name, False
+                ):
                     self.used_fixture[method_name] = True
                     self.attrs[method_name] = self.parent.attrs[method_name]
 
@@ -126,7 +135,9 @@ class NestedTestCompiler(object):
 
     def build_child_compiler(self, name, test_cls):
         name = "_".join([self.name, name])
-        child_compiler = self.__class__(test_cls, name=name, bases=self.bases, parent=self)
+        child_compiler = self.__class__(
+            test_cls, name=name, bases=self.bases, parent=self
+        )
         self.children.append(child_compiler)
         return None  # xxx
 
