@@ -14,7 +14,7 @@ def cls_decorator(cls):
 
 
 @cls_decorator
-class A(object):
+class A:
     pass
 
 

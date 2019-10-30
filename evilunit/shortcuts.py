@@ -1,7 +1,7 @@
 from ._import import import_symbol
 
 
-class TestShortcutMaker(object):
+class TestShortcutMaker:
     def __init__(self, get_target="_getTarget", make_one="_makeOne"):
         self.get_target = get_target
         self.make_one = make_one

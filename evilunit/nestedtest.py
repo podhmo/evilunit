@@ -2,11 +2,11 @@ import sys
 import unittest
 
 
-class NestedTest(object):
+class NestedTest:
     pass
 
 
-class NestedTestCompiler(object):
+class NestedTestCompiler:
     original_attr_names = set(NestedTest.__dict__.keys())
 
     def __init__(self, test_cls, name=None, bases=None, parent=None):
